@@ -1,0 +1,242 @@
+/* SENSOSYNCH - dashboard */
+.cards{
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 14px;
+  margin-bottom: 18px
+}
+.metric-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px
+}
+.glyph{
+  display: inline-grid;
+  place-items: center;
+  border-radius: 5px;
+  background: #eff4f5;
+  color: #168e72;
+  width: 30px;
+  height: 30px
+}
+.glyph.warn{
+  background: #fff4e4;
+  color: #d08a13
+}
+.glyph.sun{
+  background: #edf7ff;
+  color: #2a78db
+}
+.metric-label{
+  font-size: 12px;
+  color: #64748b
+}
+.metric-value{
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: -.5px;
+  margin-top: 5px
+}
+.tag{
+  font-size: 10px;
+  font-weight: 600;
+  background: #edf7f1;
+  color: #3b8b60;
+  border-radius: 3px;
+  padding: 4px 7px
+}
+.tag.warn{
+  background: #faf5e9;
+  color: #9a792e
+}
+.dash-grid{
+  display: grid;
+  grid-template-columns: minmax(0,1.65fr) minmax(290px,1fr);
+  gap: 17px
+}
+.legend{
+  font-size: 10px;
+  font-weight: 400;
+  float: right;
+  color: #738196
+}
+.legend i{
+  font-style: normal;
+  margin-left: 9px
+}
+.chart{
+  width: 100%;
+  height: 265px
+}
+.section-title{
+  color: #334155;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 14px;
+  margin: 0 0 14px;
+  font-weight: 650
+}
+.switch-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 6px;
+  padding: 14px 15px;
+  margin-bottom: 10px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  gap: 12px
+}
+.switch-row.all{
+  background: #f7f9fc;
+  border-color: #dbe3ef
+}
+.device-icon{
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #f2f5f8;
+  color: #45658c;
+  flex-shrink: 0
+}
+.device b{
+  font-size: 12px;
+  font-weight: 650;
+  display: block
+}
+.device small{
+  font-size: 11px;
+  color: #738195;
+  display: block;
+  margin-top: 5px
+}
+.switch{
+  border: 0;
+  width: 40px;
+  height: 23px;
+  border-radius: 15px;
+  background: #c5cedb;
+  position: relative;
+  flex-shrink: 0;
+  transition: background .15s
+}
+.switch:before{
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  background: #fff;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  transition: .15s
+}
+.switch.on{
+  background: #2e65bf
+}
+.switch.on:before{
+  transform: translateX(17px)
+}
+.switch:focus-visible{
+  outline: 3px solid #95b7ff
+}
+.hint{
+  color: #78879b;
+  font-size: 11px;
+  line-height: 1.65;
+  margin: 12px 0 0
+}
+.nav-ic,.glyph svg,.device-icon svg,.mini-icon svg{
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round
+}
+.mini-icon.all,.device-icon.all{
+  background: #eef4ff;
+  color: #3267c9
+}
+.mini-icon.led,.device-icon.led{
+  background: #f7f5ec;
+  color: #9a7611
+}
+.metric-note{
+  font-size: 11px;
+  color: #8a98ad;
+  margin-top: 8px
+}
+.chart-wrap{
+  position: relative
+}
+.chart-tooltip{
+  position: absolute;
+  top: 5px;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 1px solid #d8e0eb;
+  box-shadow: 0 7px 18px #15233d1b;
+  border-radius: 5px;
+  padding: 11px 13px;
+  z-index: 2;
+  min-width: 200px;
+  pointer-events: none;
+  font-size: 12px;
+  line-height: 1.9
+}
+.chart-tooltip[hidden]{
+  display: none
+}
+.chart-tooltip strong{
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px
+}
+.tt-dot{
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 7px
+}
+.chart [data-chart-point]{
+  cursor: crosshair
+}
+.chart [data-chart-point]:focus-visible{
+  outline: 2px solid #2d62c5
+}
+.switch.processing{
+  opacity: .65;
+  cursor: wait
+}
+.switch:disabled{
+  cursor: wait
+}
+.processing .device-icon{
+  animation: pulseDevice .75s ease-in-out infinite alternate
+}
+@keyframes pulseDevice{
+  to{
+    opacity: .45;
+    transform: scale(.94)
+  }
+}
+
+/* V8: Các khối bên trong Dashboard tự cuộn nếu màn hình thấp. */
+@media (min-width: 981px) and (min-height: 650px) {
+  body.is-dashboard .dash-grid > section:nth-child(2) {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    padding-right: 5px;
+  }
+  body.is-dashboard .dash-grid > .panel {
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+}

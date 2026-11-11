@@ -1,0 +1,97 @@
+/* SENSOSYNCH - profile */
+.profile{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 25px 12px
+}
+.avatar{
+  width: 86px;
+  height: 86px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #e9edf3;
+  color: #6a7a90;
+  font-size: 28px
+}
+.profile h2{
+  font-size: 19px;
+  margin: 0 0 5px
+}
+.quick{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 15px;
+  margin-top: 18px
+}
+.quick .panel{
+  min-height: 115px
+}
+.quick h3{
+  font-size: 13px;
+  margin-top: 0
+}
+.quick p{
+  color: #7c8ba0;
+  font-size: 12px
+}
+.resource-grid{
+  grid-template-columns: repeat(4,minmax(0,1fr))
+}
+.resource{
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0
+}
+.resource-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px
+}
+.resource-icon{
+  display: grid;
+  place-items: center;
+  background: #edf2fb;
+  color: #285eaa;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 750
+}
+.resource-icon.figma{
+  background: #f4eefa;
+  color: #7f45b4
+}
+.resource-icon.api{
+  background: #e8f6f2;
+  color: #15816c
+}
+.resource-icon.pdf{
+  background: #fff0ef;
+  color: #c95448;
+  font-size: 11px
+}
+.resource-kind{
+  font-size: 9px;
+  letter-spacing: .5px;
+  color: #8995a6
+}
+.resource h3{
+  margin: 0 0 7px
+}
+.resource p{
+  flex: 1;
+  line-height: 1.5;
+  margin: 0 0 18px
+}
+.resource .secondary{
+  align-self: start
+}
+.resource button:disabled{
+  opacity: .65;
+  cursor: not-allowed
+}

@@ -1,0 +1,89 @@
+/* SENSOSYNCH - history */
+.state{
+  font-size: 10px;
+  padding: 4px 7px;
+  border-radius: 3px;
+  background: #ddf8e7;
+  color: #188354;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px
+}
+.state.off{
+  background: #edf1f6;
+  color: #67778d
+}
+.state.failed{
+  background: #fde8e8;
+  color: #cb4444
+}
+.empty{
+  text-align: center;
+  color: #8190a6;
+  padding: 35px
+}
+.table-device{
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 600
+}
+.mini-icon{
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #f2f5f8;
+  color: #45658c;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0
+}
+.mini-icon.ok{
+  background: #eef9f3;
+  color: #2a8c5b
+}
+
+/* V8: Phần lịch sử cuộn trong bảng, trang không cuộn trên desktop. */
+.history-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+.history-panel .filters { flex: 0 0 auto; }
+.history-table-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  border: 1px solid #edf0f5;
+  border-radius: 5px;
+}
+.history-table-scroll thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.history-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 14px;
+  flex-wrap: wrap;
+}
+.pagination { display: flex; gap: 9px; align-items: center; font-size: 12px; }
+.pagination button:disabled { opacity: .45; cursor: not-allowed; }
+@media (min-width: 981px) and (min-height: 650px) {
+  body.is-history { height: 100vh; overflow: hidden; }
+  body.is-history .app { height: 100vh; min-height: 0; }
+  body.is-history main {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding-top: clamp(15px, 3vh, 30px);
+    padding-bottom: 16px;
+  }
+  body.is-history .head { flex-shrink: 0; }
+}

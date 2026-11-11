@@ -1,0 +1,18 @@
+
+# Thu vien Node.js
+node_modules/
+
+# Mat khau va cau hinh rieng
+.env
+.env.*
+!.env.example
+secrets.h
+credentials.h
+
+# File tam
+*.log
+*.tmp
+
+# Windows
+Thumbs.db
+Desktop.ini
