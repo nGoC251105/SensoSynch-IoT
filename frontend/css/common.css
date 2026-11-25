@@ -1,4 +1,10 @@
 /* SENSOSYNCH - common */
+.auth-dialog { font: inherit; color: #334155; width: min(360px, calc(100vw - 32px)); border: 1px solid #e3e7ed; border-radius: 7px; padding: 24px; box-shadow: 0 8px 32px #15233d26; }
+.auth-dialog::backdrop { background: #15233d66; }
+.auth-dialog h2 { margin: 0 0 20px; font-size: 18px; }
+.auth-dialog label { display: block; margin-bottom: 14px; font-size: 12px; }
+.auth-dialog input { display: block; width: 100%; margin-top: 6px; padding: 9px 10px; border: 1px solid #dbe5f1; border-radius: 5px; }
+.auth-dialog .auth-error { color: #b42318; font-size: 12px; }
 :root{
   font-family: "Segoe UI",Arial,sans-serif;
   color: #202b3b;

@@ -9,7 +9,7 @@ module.exports = function (context) {
     const isEsp32Online = (...args) => context.isEsp32Online(...args);
 
 async function onStatus(value) {
-    const allowedDevices = ['led1', 'led2', 'all'];
+    const allowedDevices = ['led1', 'led2', 'led3', 'led4', 'all'];
 
     if (
         !value ||
@@ -25,7 +25,7 @@ async function onStatus(value) {
     // commandId = 0 là bản tin BOOT/SYNC, không tạo lịch sử thao tác.
     if (commandId === 0) {
         if (value.device !== 'all' && !job && isEsp32Online()) {
-            const deviceId = value.device === 'led1' ? 1 : 2;
+            const deviceId = Number(value.device.slice(3));
 
             await db.execute(
                 'UPDATE devices ' +
@@ -50,7 +50,7 @@ async function onStatus(value) {
         return;
     }
 
-    if (value.status === 'FAILED') {
+    if (value.status === 'FAILED' && (job.expected.has(value.device) || value.device === job.device)) {
         await finishCommand(
             'FAILED',
             'ESP32 từ chối lệnh'
@@ -73,8 +73,8 @@ async function onStatus(value) {
     if (job.acks.size === job.expected.size) {
         try {
             const ids = job.device === 'all'
-                ? [1, 2]
-                : [job.device === 'led1' ? 1 : 2];
+                ? [1, 2, 3, 4]
+                : [Number(job.device.slice(3))];
 
             const conn = await db.getConnection();
 

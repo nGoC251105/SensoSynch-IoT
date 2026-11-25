@@ -1,14 +1,14 @@
 'use strict';
 
-require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 
-const express = require('express');
 const http = require('http');
+const auth = require('./src/services/auth')(require('./src/config/auth')());
+const { createApp, registerApi } = require('./src/app');
 
-const app = express();
-app.use(express.json({ limit: '16kb' }));
+const app = createApp(auth);
 const server = http.createServer(app);
-const broadcast = require('./src/realtime/websocket')(server);
+const broadcast = require('./src/realtime/websocket')(server, auth);
 
 const PORT = Number(
     process.env.PORT || 3000
@@ -23,19 +23,9 @@ const client = require('./src/config/mqtt');
 const state = require('./src/state');
 const context = { app, server, db, client, state, broadcast, PORT, TIMEOUT };
 
-for (const name of ['devices', 'commands', 'esp32', 'device-status', 'sensors']) {
-    Object.assign(context, require('./src/services/' + name)(context));
-}
+registerApi(context);
 
 require('./src/realtime/mqtt')(context);
-
-// Keep API registration in the same order as the original server.
-for (const name of [
-    'health', 'sensor-latest', 'sensor-chart', 'devices',
-    'device-control', 'action-result', 'sensor-data', 'action-history'
-]) {
-    require('./src/routes/' + name)(context);
-}
 
 require('./src/routes/frontend')(app, __dirname);
 require('./src/middleware/error-handler')(app);

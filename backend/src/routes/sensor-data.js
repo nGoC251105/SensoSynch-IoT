@@ -11,7 +11,7 @@ app.get('/api/sensor-data', safeRoute(async (req, res) => {
 
     const type = req.query.type || 'all';
 
-    if (!['all', 'Temperature', 'Humidity', 'Light'].includes(type)) {
+    if (!['all', 'Temperature', 'Humidity', 'Light', 'Demo'].includes(type)) {
         return error(res, 400, 'Loại cảm biến không hợp lệ');
     }
 

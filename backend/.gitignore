@@ -16,3 +16,6 @@ credentials.h
 # Windows
 Thumbs.db
 Desktop.ini
+
+# Local login credentials; never publish
+.auth-login.local.json

@@ -1,0 +1,99 @@
+{
+  "checkedAt": "2026-11-25T19:03:10.005Z",
+  "scope": "isolated actual HTTP/middleware/WebSocket with mock DB/MQTT",
+  "counts": {
+    "total": 22,
+    "pass": 22,
+    "fail": 0
+  },
+  "results": [
+    {
+      "name": "GET /api/sensors/latest rejects missing JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/sensors/latest rejects fake JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/sensors/chart rejects missing JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/sensors/chart rejects fake JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/devices rejects missing JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/devices rejects fake JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/esp32/status rejects missing JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/esp32/status rejects fake JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/sensor-data rejects missing JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/sensor-data rejects fake JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/action-history rejects missing JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/action-history rejects fake JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/actions/1 rejects missing JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "GET /api/actions/1 rejects fake JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "POST /api/devices/1/control rejects missing JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "POST /api/devices/1/control rejects fake JWT before DB/MQTT",
+      "status": "PASS"
+    },
+    {
+      "name": "Protected malformed POST without token is still 401",
+      "status": "PASS"
+    },
+    {
+      "name": "Unsigned alg=none token rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Missing JWT_SECRET fails closed",
+      "status": "PASS"
+    },
+    {
+      "name": "Unauthenticated WebSocket receives no telemetry",
+      "status": "PASS"
+    },
+    {
+      "name": "Fake WebSocket JWT closes with 1008",
+      "status": "PASS"
+    },
+    {
+      "name": "WebSocket accepts valid JWT and closes at expiry",
+      "status": "PASS"
+    }
+  ]
+}

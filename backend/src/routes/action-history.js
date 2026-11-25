@@ -65,6 +65,8 @@ app.get('/api/action-history', safeRoute(async (req, res) => {
     const display = {
         led1: 'LED 1',
         led2: 'LED 2',
+        led3: 'LED 3',
+        led4: 'LED 4',
         all: 'ALL LIGHTS'
     };
 

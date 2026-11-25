@@ -1,0 +1,14 @@
+**/node_modules/
+**/.env
+**/.env.*
+!**/.env.example
+**/.auth-login.local.json
+**/secrets.h
+**/credentials.h
+**/~$*
+**/*.log
+**/*.tmp
+**/__pycache__/
+backend/postman/reports/newman-report.json
+Thumbs.db
+Desktop.ini

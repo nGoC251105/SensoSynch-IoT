@@ -1,0 +1,193 @@
+{
+  "checkedAt": "2026-11-25T19:04:15.917Z",
+  "scope": "real production server, configured MySQL/MQTT; no authenticated LED control dispatched",
+  "counts": {
+    "total": 33,
+    "pass": 33,
+    "fail": 0
+  },
+  "results": [
+    {
+      "name": "TC01 Public health without token",
+      "status": "PASS",
+      "http": 200
+    },
+    {
+      "name": "TC02 Login and save access_token",
+      "status": "PASS",
+      "http": 200
+    },
+    {
+      "name": "TC03 Incorrect login is rejected",
+      "status": "PASS",
+      "http": 401
+    },
+    {
+      "name": "TC04 Protected GET without token",
+      "status": "PASS",
+      "http": 401
+    },
+    {
+      "name": "TC05 Protected GET with fake token",
+      "status": "PASS",
+      "http": 401
+    },
+    {
+      "name": "TC06 Protected GET with valid token",
+      "status": "PASS",
+      "http": 200
+    },
+    {
+      "name": "TC07 Expired correctly signed JWT",
+      "status": "PASS",
+      "http": 401
+    },
+    {
+      "name": "TC08 Control without JWT; no MQTT publish",
+      "status": "PASS",
+      "http": 401
+    },
+    {
+      "name": "TC09 Control with fake JWT; no MQTT publish",
+      "status": "PASS",
+      "http": 401
+    },
+    {
+      "name": "TC11 Reject signed JWT with disallowed algorithm",
+      "status": "PASS",
+      "http": 401
+    },
+    {
+      "name": "TC12 Reject JWT with wrong signature",
+      "status": "PASS",
+      "http": 401
+    },
+    {
+      "name": "TC13 Reject signed JWT without expiry",
+      "status": "PASS",
+      "http": 401
+    },
+    {
+      "name": "TC14 Reject JWT with wrong issuer",
+      "status": "PASS",
+      "http": 401
+    },
+    {
+      "name": "TC15 Reject JWT with wrong audience",
+      "status": "PASS",
+      "http": 401
+    },
+    {
+      "name": "missing JWT /api/sensors/latest",
+      "http": 401,
+      "expected": 401,
+      "status": "PASS"
+    },
+    {
+      "name": "fake JWT /api/sensors/latest",
+      "http": 401,
+      "expected": 401,
+      "status": "PASS"
+    },
+    {
+      "name": "valid JWT /api/sensors/latest",
+      "http": 200,
+      "expected": 200,
+      "status": "PASS"
+    },
+    {
+      "name": "missing JWT /api/sensors/chart?limit=12",
+      "http": 401,
+      "expected": 401,
+      "status": "PASS"
+    },
+    {
+      "name": "fake JWT /api/sensors/chart?limit=12",
+      "http": 401,
+      "expected": 401,
+      "status": "PASS"
+    },
+    {
+      "name": "valid JWT /api/sensors/chart?limit=12",
+      "http": 200,
+      "expected": 200,
+      "status": "PASS"
+    },
+    {
+      "name": "missing JWT /api/devices",
+      "http": 401,
+      "expected": 401,
+      "status": "PASS"
+    },
+    {
+      "name": "fake JWT /api/devices",
+      "http": 401,
+      "expected": 401,
+      "status": "PASS"
+    },
+    {
+      "name": "valid JWT /api/devices",
+      "http": 200,
+      "expected": 200,
+      "status": "PASS"
+    },
+    {
+      "name": "missing JWT /api/esp32/status",
+      "http": 401,
+      "expected": 401,
+      "status": "PASS"
+    },
+    {
+      "name": "fake JWT /api/esp32/status",
+      "http": 401,
+      "expected": 401,
+      "status": "PASS"
+    },
+    {
+      "name": "valid JWT /api/esp32/status",
+      "http": 200,
+      "expected": 200,
+      "status": "PASS"
+    },
+    {
+      "name": "missing JWT /api/sensor-data",
+      "http": 401,
+      "expected": 401,
+      "status": "PASS"
+    },
+    {
+      "name": "fake JWT /api/sensor-data",
+      "http": 401,
+      "expected": 401,
+      "status": "PASS"
+    },
+    {
+      "name": "valid JWT /api/sensor-data",
+      "http": 200,
+      "expected": 200,
+      "status": "PASS"
+    },
+    {
+      "name": "missing JWT /api/action-history",
+      "http": 401,
+      "expected": 401,
+      "status": "PASS"
+    },
+    {
+      "name": "fake JWT /api/action-history",
+      "http": 401,
+      "expected": 401,
+      "status": "PASS"
+    },
+    {
+      "name": "valid JWT /api/action-history",
+      "http": 200,
+      "expected": 200,
+      "status": "PASS"
+    },
+    {
+      "name": "Live WebSocket JWT handshake",
+      "status": "PASS"
+    }
+  ]
+}

@@ -13,7 +13,7 @@ module.exports = function (context) {
 app.post('/api/devices/:target/control', safeRoute(async (req, res) => {
     const target = req.params.target;
 
-    if (!['1', '2', 'all'].includes(target)) {
+    if (!['1', '2', '3', '4', 'all'].includes(target)) {
         return error(res, 404, 'Thiết bị không tồn tại');
     }
 
@@ -27,11 +27,7 @@ app.post('/api/devices/:target/control', safeRoute(async (req, res) => {
         return error(res, 409, 'Hệ thống đang xử lý lệnh khác');
     }
 
-    const device = target === 'all'
-        ? 'all'
-        : target === '1'
-            ? 'led1'
-            : 'led2';
+    const device = target === 'all' ? 'all' : `led${target}`;
 
     // Ghi nhận mọi lệnh hợp lệ, kể cả khi ESP32 đã offline.
     // Trả về HTTP 202 với status FAILED để giao diện
@@ -79,7 +75,7 @@ app.post('/api/devices/:target/control', safeRoute(async (req, res) => {
         device,
         action,
         expected: new Set(
-            device === 'all' ? ['led1', 'led2'] : [device]
+            device === 'all' ? ['led1', 'led2', 'led3', 'led4'] : [device]
         ),
         acks: new Set(),
         finished: false,

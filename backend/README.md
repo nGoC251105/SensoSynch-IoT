@@ -1,3 +1,5 @@
+> JWT Login/Postman: xem [AUTH_SETUP.md](AUTH_SETUP.md) v? [b?o c?o ki?m th? hi?n t?i](postman/IMPLEMENTATION_TEST_REPORT.md).
+
 # SensoSynch backend
 
 Chạy backend như trước:

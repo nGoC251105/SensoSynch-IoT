@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-11-25T20:36:46.736Z",
+  "status": "PASS",
+  "schema": "Postman Collection v2.1 official schema",
+  "requests": 17,
+  "scripts": 31,
+  "folders": 6,
+  "sequence": "TC01..TC17",
+  "originalTestAssertionsAndExamplesPreserved": true,
+  "hardwareLocked": true,
+  "secretVariablesEmpty": true
+}

@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-11-25T19:03:40.213Z",
+  "status": "PASS",
+  "officialCollectionSchema": "v2.1.0",
+  "explicitRoutes": 11,
+  "jsonApiEndpoints": 10,
+  "collectionCases": 88,
+  "embeddedScripts": 174,
+  "jsonFilesParsed": 17,
+  "backendJavaScriptFiles": 29,
+  "toolJavaScriptFiles": 10
+}

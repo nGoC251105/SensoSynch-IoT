@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-11-25T19:02:33.879Z",
+  "scope": "actual frontend api.js in VM with DOM/fetch/WebSocket stubs; not visual browser QA",
+  "counts": {
+    "total": 4,
+    "pass": 4,
+    "fail": 0
+  },
+  "results": [
+    {
+      "name": "Concurrent protected requests share one login dialog",
+      "status": "PASS"
+    },
+    {
+      "name": "Protected frontend requests attach Authorization Bearer",
+      "status": "PASS"
+    },
+    {
+      "name": "401 on LED POST clears token and never retries the command",
+      "status": "PASS"
+    },
+    {
+      "name": "WebSocket sends auth message after login, without token in URL",
+      "status": "PASS"
+    }
+  ]
+}

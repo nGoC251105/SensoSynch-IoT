@@ -23,6 +23,7 @@ app.get('/api/sensors/latest', safeRoute(async (req, res) => {
         temperature: null,
         humidity: null,
         light: null,
+        demo: null,
         measuredAt: null
     };
 
@@ -31,7 +32,7 @@ app.get('/api/sensors/latest', safeRoute(async (req, res) => {
 
         const t = iso(r.measured_at);
 
-        if (!result.measuredAt || t > result.measuredAt) {
+        if (r.type !== 'Demo' && (!result.measuredAt || t > result.measuredAt)) {
             result.measuredAt = t;
         }
     }

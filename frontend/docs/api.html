@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SENSOSYNCH - API Documentation</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f7fb;color:#273449;font:14px/1.6 Arial, sans-serif}
+main{max-width:1100px;margin:36px auto;padding:0 22px}header{background:#fff;border:1px solid #e2e8f2;padding:26px;border-radius:12px;margin-bottom:18px}h1{margin:0 0 7px;font-size:25px}h2{font-size:19px;margin:26px 0 12px}p{margin:5px 0}.muted{color:#66758b}.table{overflow-x:auto;border:1px solid #e2e8f2;border-radius:10px;background:white}table{width:100%;border-collapse:collapse;min-width:800px}th,td{padding:13px;text-align:left;border-bottom:1px solid #e7edf5;vertical-align:top}th{background:#eff3f9}code,pre{font:13px/1.6 Consolas,monospace}code{color:#1f568d}pre{background:#172437;color:#eaf1fa;padding:15px;border-radius:9px;white-space:pre-wrap}.method{font-size:11px;font-weight:700;padding:5px 8px;border-radius:4px;background:#e6f4ea;color:#177849}.post{background:#fff3e3;color:#bd7220}.note{background:white;padding:17px;border-radius:9px;border:1px solid #e2e8f2}a{color:#2966be}
+</style>
+</head>
+<body><main><header><p class="muted">SENSOSYNCH V12 · ESP32 · MQTT · Node.js · MySQL</p><h1>API Documentation</h1><p>Danh sách endpoint phục vụ Dashboard, Data Sensor, Action History và điều khiển LED.</p><p><b>Base URL:</b> <code>http://localhost:3000</code></p></header>
+<h2>Danh sách API</h2><div class="table"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Chức năng</th><th>Tham số / Body</th></tr></thead><tbody><tr><td><span class="method get">GET</span></td><td><code>/api/health</code></td><td>Kiểm tra MySQL, MQTT và ESP32</td><td>Không có</td></tr>
+<tr><td><span class="method get">GET</span></td><td><code>/api/sensors/latest</code></td><td>Giá trị nhiệt độ, độ ẩm, ánh sáng mới nhất</td><td>Không có</td></tr>
+<tr><td><span class="method get">GET</span></td><td><code>/api/sensors/chart?limit=12</code></td><td>Dữ liệu biểu đồ, mặc định 12 thời điểm</td><td>limit: 1–100</td></tr>
+<tr><td><span class="method get">GET</span></td><td><code>/api/devices</code></td><td>Danh sách thiết bị LED và trạng thái</td><td>Không có</td></tr>
+<tr><td><span class="method get">GET</span></td><td><code>/api/esp32/status</code></td><td>Trạng thái kết nối ESP32</td><td>Không có</td></tr>
+<tr><td><span class="method post">POST</span></td><td><code>/api/devices/1/control</code></td><td>Bật/tắt LED1</td><td>JSON: {&quot;action&quot;:&quot;ON&quot;} hoặc {&quot;action&quot;:&quot;OFF&quot;}</td></tr>
+<tr><td><span class="method post">POST</span></td><td><code>/api/devices/2/control</code></td><td>Bật/tắt LED2</td><td>JSON: {&quot;action&quot;:&quot;ON&quot;} hoặc {&quot;action&quot;:&quot;OFF&quot;}</td></tr>
+<tr><td><span class="method post">POST</span></td><td><code>/api/devices/all/control</code></td><td>Bật/tắt đồng thời 2 LED</td><td>JSON: {&quot;action&quot;:&quot;ON&quot;} hoặc {&quot;action&quot;:&quot;OFF&quot;}</td></tr>
+<tr><td><span class="method get">GET</span></td><td><code>/api/actions/1</code></td><td>Theo dõi trạng thái lệnh: PENDING / SUCCESS / FAILED</td><td>Thay 1 bằng ID từ POST control</td></tr>
+<tr><td><span class="method get">GET</span></td><td><code>/api/sensor-data?page=1&amp;size=10</code></td><td>Lọc, sắp xếp, phân trang cảm biến</td><td>type, date, sort=asc/desc, page, size</td></tr>
+<tr><td><span class="method get">GET</span></td><td><code>/api/action-history?page=1&amp;size=10</code></td><td>Lọc, phân trang lịch sử thao tác</td><td>action=ON/OFF, status, date, page, size</td></tr></tbody></table></div>
+<h2>Ví dụ điều khiển LED</h2><pre>POST http://localhost:3000/api/devices/1/control
+Content-Type: application/json
+
+{"action":"ON"}</pre><div class="note"><b>Phản hồi:</b> Hệ thống tiếp nhận lệnh, trả ID và trạng thái lệnh. Kiểm tra tiếp <code>GET /api/actions/{id}</code> để xác nhận <code>SUCCESS</code> hay <code>FAILED</code>. Trường hợp ESP32 offline có thể ghi hành động <code>FAILED</code> vào Action History.</div>
+<h2>Kiểm thử</h2><p>Chạy backend trước khi dùng Postman. Các URL bắt đầu bằng <code>/api/</code> (không có <code>/api/v1/</code>). Mã phản hồi có thể gặp: <code>200</code>, <code>202</code>, <code>400</code>, <code>404</code>, <code>409</code>, <code>503</code>.</p><p class="muted">Tài liệu đi kèm mã nguồn của phiên bản SENSOSYNCH đang được cấu hình; không phải tài liệu Swagger tự sinh.</p></main></body></html>

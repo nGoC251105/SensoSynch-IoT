@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-11-11T07:22:33.857Z",
+  "port": 3000,
+  "commandTimeoutMs": 10000,
+  "backend": {
+    "reachable": false,
+    "code": "ECONNREFUSED"
+  },
+  "mysql": {
+    "connected": true,
+    "history": [
+      {
+        "status": "SUCCESS",
+        "total": 30
+      },
+      {
+        "status": "FAILED",
+        "total": 4
+      }
+    ],
+    "tableCount": 4
+  },
+  "safeToStart": true,
+  "mqtt": {
+    "connected": true
+  }
+}

@@ -240,3 +240,103 @@
     scrollbar-width: thin;
   }
 }
+/* V12 dashboard layout; preserve the shared theme and other pages. */
+body.is-dashboard main {
+  display: block;
+  height: auto;
+  min-height: 100vh;
+  overflow: visible;
+}
+body.is-dashboard { height: auto; overflow: auto; }
+body.is-dashboard .app { height: auto; min-height: 100vh; }
+.dashboard-charts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+  margin-bottom: 18px;
+}
+.dashboard-charts > .panel { min-width: 0; }
+body.is-dashboard .dashboard-charts .chart {
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  display: block;
+  aspect-ratio: 640 / 265;
+}
+body.is-dashboard .dashboard-bottom {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+body.is-dashboard .dashboard-bottom > .cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  overflow: visible;
+}
+body.is-dashboard .dashboard-bottom > section:nth-child(2) {
+  overflow: visible;
+  padding-right: 0;
+}
+.metric-unit { font-size: 16px; }
+.dashboard-charts .chart-tooltip {
+  min-width: 0;
+  width: max-content;
+  max-width: 100%;
+}
+@media (max-width: 980px) {
+  body.is-dashboard .dashboard-bottom { grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+  .dashboard-charts { grid-template-columns: 1fr; }
+
+}
+
+/* Compact V12 metrics; keep all four charts unchanged. */
+body.is-dashboard .dashboard-bottom > .cards {
+  grid-template-rows: auto repeat(2, 1fr);
+  gap: 10px;
+}
+.dashboard-bottom > .cards > .section-title {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+body.is-dashboard .dashboard-bottom > .cards > .card {
+  min-width: 0;
+  min-height: 0;
+  padding: 6px 14px;
+}
+.dashboard-bottom .metric-top { margin-bottom: 4px; }
+.dashboard-bottom .metric-value { margin-top: 2px; }
+.dashboard-bottom .metric-note { margin-top: 4px; }
+.led-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+body.is-dashboard .led-grid > .led-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  padding: 12px;
+  margin: 0;
+  min-width: 0;
+}
+.led-card .device { min-width: 0; gap: 8px; }
+.led-card .device b, .led-card .device small { overflow-wrap: anywhere; }
+.dashboard-bottom > section > .section-title { margin-bottom: 10px; }
+.dashboard-bottom .switch-row.all { flex-wrap: wrap; margin-bottom: 0; padding: 10px 12px; }
+.dashboard-bottom .switch-row.all > b { font-size: 12px; }
+.dashboard-bottom .switch-row.all > div { display: flex; flex-wrap: wrap; gap: 6px; }
+.dashboard-bottom .switch-row.all button { padding: 7px 12px; }
+.dashboard-bottom .hint { margin-top: 8px; }
+@media (min-width: 981px) and (max-width: 1200px), (max-width: 680px) {
+  .led-card .device { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 380px) {
+  .led-grid { grid-template-columns: 1fr; }
+  .dashboard-bottom .metric-unit { font-size: 12px; }
+  body.is-dashboard .dashboard-bottom > .cards > .card { padding: 10px; }
+}

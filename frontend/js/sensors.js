@@ -12,7 +12,7 @@ function sensors() {
     const start = (state.sensorPage - 1) * pageSize;
     const currentRows = filtered;
 
-    const typeOptions = ['Temperature', 'Humidity', 'Light']
+    const typeOptions = ['Temperature', 'Humidity', 'Light', 'Demo']
         .map(type => `<option ${state.filterType === type ? 'selected' : ''}>${type}</option>`)
         .join('');
     const rowsHtml = currentRows.length

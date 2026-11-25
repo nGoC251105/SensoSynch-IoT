@@ -1,0 +1,882 @@
+[
+  {
+    "id": "TC01",
+    "name": "Public health without token",
+    "folder": "Authentication",
+    "method": "GET",
+    "url": "/api/health",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "TC02",
+    "name": "Login and save access_token",
+    "folder": "Authentication",
+    "method": "POST",
+    "url": "/api/auth/login",
+    "expectedStatus": 200,
+    "guarded": "credentials",
+    "knownIssue": null
+  },
+  {
+    "id": "TC03",
+    "name": "Incorrect login is rejected",
+    "folder": "Authentication",
+    "method": "POST",
+    "url": "/api/auth/login",
+    "expectedStatus": 401,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "TC04",
+    "name": "Protected GET without token",
+    "folder": "Authentication",
+    "method": "GET",
+    "url": "/api/devices",
+    "expectedStatus": 401,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "TC05",
+    "name": "Protected GET with fake token",
+    "folder": "Authentication",
+    "method": "GET",
+    "url": "/api/devices",
+    "expectedStatus": 401,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "TC06",
+    "name": "Protected GET with valid token",
+    "folder": "Authentication",
+    "method": "GET",
+    "url": "/api/devices",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "TC07",
+    "name": "Expired correctly signed JWT",
+    "folder": "Authentication",
+    "method": "GET",
+    "url": "/api/devices",
+    "expectedStatus": 401,
+    "guarded": "expired",
+    "knownIssue": null
+  },
+  {
+    "id": "TC08",
+    "name": "Control without JWT; no MQTT publish",
+    "folder": "Authentication",
+    "method": "POST",
+    "url": "/api/devices/1/control",
+    "expectedStatus": 401,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "TC09",
+    "name": "Control with fake JWT; no MQTT publish",
+    "folder": "Authentication",
+    "method": "POST",
+    "url": "/api/devices/1/control",
+    "expectedStatus": 401,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "TC10",
+    "name": "Valid JWT control on isolated mock MQTT only",
+    "folder": "Authentication",
+    "method": "POST",
+    "url": "/api/devices/1/control",
+    "expectedStatus": 202,
+    "guarded": "mock-only",
+    "knownIssue": null
+  },
+  {
+    "id": "TC11",
+    "name": "Reject signed JWT with disallowed algorithm",
+    "folder": "Authentication",
+    "method": "GET",
+    "url": "/api/devices",
+    "expectedStatus": 401,
+    "guarded": "wrong_algorithm_token",
+    "knownIssue": null
+  },
+  {
+    "id": "TC12",
+    "name": "Reject JWT with wrong signature",
+    "folder": "Authentication",
+    "method": "GET",
+    "url": "/api/devices",
+    "expectedStatus": 401,
+    "guarded": "wrong_signature_token",
+    "knownIssue": null
+  },
+  {
+    "id": "TC13",
+    "name": "Reject signed JWT without expiry",
+    "folder": "Authentication",
+    "method": "GET",
+    "url": "/api/devices",
+    "expectedStatus": 401,
+    "guarded": "no_expiry_token",
+    "knownIssue": null
+  },
+  {
+    "id": "TC14",
+    "name": "Reject JWT with wrong issuer",
+    "folder": "Authentication",
+    "method": "GET",
+    "url": "/api/devices",
+    "expectedStatus": 401,
+    "guarded": "wrong_issuer_token",
+    "knownIssue": null
+  },
+  {
+    "id": "TC15",
+    "name": "Reject JWT with wrong audience",
+    "folder": "Authentication",
+    "method": "GET",
+    "url": "/api/devices",
+    "expectedStatus": 401,
+    "guarded": "wrong_audience_token",
+    "knownIssue": null
+  },
+  {
+    "id": "SYS01",
+    "name": "Health / MySQL connectivity",
+    "folder": "System",
+    "method": "GET",
+    "url": "/api/health",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "SYS02",
+    "name": "ESP32 and MQTT status",
+    "folder": "System",
+    "method": "GET",
+    "url": "/api/esp32/status",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "SYS03",
+    "name": "Frontend entry point (not a JSON API)",
+    "folder": "System",
+    "method": "GET",
+    "url": "/",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "SEN01",
+    "name": "Latest sensor values",
+    "folder": "Sensors",
+    "method": "GET",
+    "url": "/api/sensors/latest",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "SEN02",
+    "name": "Chart default 12 measurement times",
+    "folder": "Sensors",
+    "method": "GET",
+    "url": "/api/sensors/chart",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "SEN_LIMIT_1",
+    "name": "Chart limit=1",
+    "folder": "Sensors",
+    "method": "GET",
+    "url": "/api/sensors/chart?limit=1",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "SEN_LIMIT_100",
+    "name": "Chart limit=100",
+    "folder": "Sensors",
+    "method": "GET",
+    "url": "/api/sensors/chart?limit=100",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "SEN_BAD_0",
+    "name": "Reject chart limit=0",
+    "folder": "Sensors",
+    "method": "GET",
+    "url": "/api/sensors/chart?limit=0",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "SEN_BAD_101",
+    "name": "Reject chart limit=101",
+    "folder": "Sensors",
+    "method": "GET",
+    "url": "/api/sensors/chart?limit=101",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "SEN_BAD_-1",
+    "name": "Reject chart limit=-1",
+    "folder": "Sensors",
+    "method": "GET",
+    "url": "/api/sensors/chart?limit=-1",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "SEN_BAD_1.5",
+    "name": "Reject chart limit=1.5",
+    "folder": "Sensors",
+    "method": "GET",
+    "url": "/api/sensors/chart?limit=1.5",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "SEN_BAD_abc",
+    "name": "Reject chart limit=abc",
+    "folder": "Sensors",
+    "method": "GET",
+    "url": "/api/sensors/chart?limit=abc",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "DEV01",
+    "name": "List devices",
+    "folder": "Devices",
+    "method": "GET",
+    "url": "/api/devices",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "CTL01",
+    "name": "Reject unknown device without publishing",
+    "folder": "Control",
+    "method": "POST",
+    "url": "/api/devices/5/control",
+    "expectedStatus": 404,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "CTL02",
+    "name": "Reject unsupported action",
+    "folder": "Control",
+    "method": "POST",
+    "url": "/api/devices/1/control",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "CTL03",
+    "name": "Reject missing action",
+    "folder": "Control",
+    "method": "POST",
+    "url": "/api/devices/2/control",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "CTL04",
+    "name": "Reject lowercase action",
+    "folder": "Control",
+    "method": "POST",
+    "url": "/api/devices/all/control",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "CTL05",
+    "name": "Reject null action",
+    "folder": "Control",
+    "method": "POST",
+    "url": "/api/devices/1/control",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "CTL06",
+    "name": "Malformed JSON should be HTTP 400",
+    "folder": "Control",
+    "method": "POST",
+    "url": "/api/devices/1/control",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": "express.json throws status=400, but middleware only reads err.code; current code returns 500."
+  },
+  {
+    "id": "CTL07",
+    "name": "JSON over 16kb should be HTTP 413",
+    "folder": "Control",
+    "method": "POST",
+    "url": "/api/devices/1/control",
+    "expectedStatus": 413,
+    "guarded": null,
+    "knownIssue": "Body limit is 16kb; current error middleware converts status=413 to 500."
+  },
+  {
+    "id": "CTL08",
+    "name": "OPT-IN: dispatch exactly one LED command",
+    "folder": "Control",
+    "method": "POST",
+    "url": "/api/devices/{{control_target}}/control",
+    "expectedStatus": 202,
+    "guarded": "hardware",
+    "knownIssue": null
+  },
+  {
+    "id": "CTL09",
+    "name": "OPT-IN: poll result of that command, never resend",
+    "folder": "Control",
+    "method": "GET",
+    "url": "/api/actions/{{command_id}}",
+    "expectedStatus": 200,
+    "guarded": "poll",
+    "knownIssue": null
+  },
+  {
+    "id": "ACT01",
+    "name": "Action history defaults; capture existing ID",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT02",
+    "name": "Get existing action result",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/actions/{{existing_action_id}}",
+    "expectedStatus": 200,
+    "guarded": "existing",
+    "knownIssue": null
+  },
+  {
+    "id": "ACT03",
+    "name": "Unknown valid action ID",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/actions/{{missing_action_id}}",
+    "expectedStatus": 404,
+    "guarded": "missing",
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_ID_0",
+    "name": "Reject action ID 0",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/actions/0",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_ID_-1",
+    "name": "Reject action ID -1",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/actions/-1",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_ID_abc",
+    "name": "Reject action ID abc",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/actions/abc",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_ID_1.5",
+    "name": "Reject action ID 1.5",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/actions/1.5",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_ID_1000001",
+    "name": "Reject action ID 1000001",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/actions/1000001",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_STATUS_PENDING",
+    "name": "Filter status PENDING",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?status=PENDING&page=1&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_STATUS_SUCCESS",
+    "name": "Filter status SUCCESS",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?status=SUCCESS&page=1&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_STATUS_FAILED",
+    "name": "Filter status FAILED",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?status=FAILED&page=1&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_ACTION_ON",
+    "name": "Filter action ON",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?action=ON&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_ACTION_OFF",
+    "name": "Filter action OFF",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?action=OFF&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_DATE",
+    "name": "Filter action history by Vietnam day",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?date={{filter_date}}&page=2&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_BAD_action_TOGGLE",
+    "name": "Reject action=TOGGLE",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?action=TOGGLE",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_BAD_status_unknown",
+    "name": "Reject status=unknown",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?status=unknown",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_BAD_page_0",
+    "name": "Reject page=0",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?page=0",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_BAD_size_101",
+    "name": "Reject size=101",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?size=101",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_BAD_date_11-11-2026",
+    "name": "Reject date=11-11-2026",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?date=11-11-2026",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_BAD_date_2026-02-30",
+    "name": "Reject date=2026-02-30",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?date=2026-02-30",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "ACT_DATE_INVALID",
+    "name": "Invalid month should be HTTP 400",
+    "folder": "Action History",
+    "method": "GET",
+    "url": "/api/action-history?date=2026-13-01",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": "vnDayRange calls toISOString before checking validDate, resulting in HTTP 500."
+  },
+  {
+    "id": "HIS01",
+    "name": "Sensor history defaults",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_Temperature_asc",
+    "name": "Temperature, sort=asc",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?type=Temperature&sort=asc&page=1&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_Temperature_desc",
+    "name": "Temperature, sort=desc",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?type=Temperature&sort=desc&page=1&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_Humidity_asc",
+    "name": "Humidity, sort=asc",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?type=Humidity&sort=asc&page=1&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_Humidity_desc",
+    "name": "Humidity, sort=desc",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?type=Humidity&sort=desc&page=1&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_Light_asc",
+    "name": "Light, sort=asc",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?type=Light&sort=asc&page=1&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_Light_desc",
+    "name": "Light, sort=desc",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?type=Light&sort=desc&page=1&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_Demo_asc",
+    "name": "Demo, sort=asc",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?type=Demo&sort=asc&page=1&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_Demo_desc",
+    "name": "Demo, sort=desc",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?type=Demo&sort=desc&page=1&size=5",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_DATE",
+    "name": "Filter sensor history by Vietnam day",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?date={{filter_date}}&size=5&page=2",
+    "expectedStatus": 200,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_BAD_type_temperature",
+    "name": "Reject type=temperature",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?type=temperature",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_BAD_sort_invalid",
+    "name": "Reject sort=invalid",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?sort=invalid",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_BAD_page_0",
+    "name": "Reject page=0",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?page=0",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_BAD_page_1.5",
+    "name": "Reject page=1.5",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?page=1.5",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_BAD_page_1000001",
+    "name": "Reject page=1000001",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?page=1000001",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_BAD_size_0",
+    "name": "Reject size=0",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?size=0",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_BAD_size_101",
+    "name": "Reject size=101",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?size=101",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_BAD_date_11-11-2026",
+    "name": "Reject date=11-11-2026",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?date=11-11-2026",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_BAD_date_2026-02-30",
+    "name": "Reject date=2026-02-30",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?date=2026-02-30",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "HIS_DATE_INVALID",
+    "name": "Invalid month should be HTTP 400",
+    "folder": "Sensor History",
+    "method": "GET",
+    "url": "/api/sensor-data?date=2026-13-01",
+    "expectedStatus": 400,
+    "guarded": null,
+    "knownIssue": "vnDayRange calls toISOString before checking validDate, resulting in HTTP 500."
+  },
+  {
+    "id": "LED_1_ON",
+    "name": "LED1 ON",
+    "folder": "Four LED control",
+    "method": "POST",
+    "url": "/api/devices/1/control",
+    "expectedStatus": 202,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "LED_1_OFF",
+    "name": "LED1 OFF",
+    "folder": "Four LED control",
+    "method": "POST",
+    "url": "/api/devices/1/control",
+    "expectedStatus": 202,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "LED_2_ON",
+    "name": "LED2 ON",
+    "folder": "Four LED control",
+    "method": "POST",
+    "url": "/api/devices/2/control",
+    "expectedStatus": 202,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "LED_2_OFF",
+    "name": "LED2 OFF",
+    "folder": "Four LED control",
+    "method": "POST",
+    "url": "/api/devices/2/control",
+    "expectedStatus": 202,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "LED_3_ON",
+    "name": "LED3 ON",
+    "folder": "Four LED control",
+    "method": "POST",
+    "url": "/api/devices/3/control",
+    "expectedStatus": 202,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "LED_3_OFF",
+    "name": "LED3 OFF",
+    "folder": "Four LED control",
+    "method": "POST",
+    "url": "/api/devices/3/control",
+    "expectedStatus": 202,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "LED_4_ON",
+    "name": "LED4 ON",
+    "folder": "Four LED control",
+    "method": "POST",
+    "url": "/api/devices/4/control",
+    "expectedStatus": 202,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "LED_4_OFF",
+    "name": "LED4 OFF",
+    "folder": "Four LED control",
+    "method": "POST",
+    "url": "/api/devices/4/control",
+    "expectedStatus": 202,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "LED_all_ON",
+    "name": "ALL ON",
+    "folder": "Four LED control",
+    "method": "POST",
+    "url": "/api/devices/all/control",
+    "expectedStatus": 202,
+    "guarded": null,
+    "knownIssue": null
+  },
+  {
+    "id": "LED_all_OFF",
+    "name": "ALL OFF",
+    "folder": "Four LED control",
+    "method": "POST",
+    "url": "/api/devices/all/control",
+    "expectedStatus": 202,
+    "guarded": null,
+    "knownIssue": null
+  }
+]
